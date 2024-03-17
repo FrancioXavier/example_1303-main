@@ -1,8 +1,8 @@
 document.getElementById('form_pet').addEventListener("submit", function(event){
     
 
-    event.preventDefault();
+    // event.preventDefault();
 
    
-    window.location.href = "./index.html";
+    // window.location.href = "./index.html";
 });

@@ -8,6 +8,10 @@ const {pets} = require('./pets')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('assets'));  
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Ocorreu um erro no servidor!');
+})
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/assets/index.html');
 })
@@ -23,11 +27,10 @@ app.post('/pets', validatePet,(req, res) => {
         breed: req.body.breed,
         color: req.body.color,
         ownerName: req.body.ownerName,
-        contact: req.body.contact,
-        photo: req.body.photo
+        contact: req.body.contact
     })
-    // console.log(pets)
-    // res.redirect('/')
+    console.log(pets)
+    res.redirect('/')
 }) 
 
 app.listen(3000, () => {
